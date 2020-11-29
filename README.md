@@ -13,7 +13,7 @@ Pengunduhan hanya 11MB. Silahkan pilih versi yang sesuai:
     $ ./alphp-5.6-x86_64.run
 32 bit:
 
-    $ https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86.run
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86.run
     $ chmod +x alphp-5.6-x86.run
     $ ./alphp-5.6-x86.run
 
