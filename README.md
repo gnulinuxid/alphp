@@ -4,11 +4,19 @@ alphp adalah [Apache](https://httpd.apache.org/) dan [PHP](https://www.php.net/)
 
 Pemasangan
 ----------
-Pengunduhan hanya 11MB:
+Pengunduhan hanya 11MB. Silahkan pilih versi yang sesuai:
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-20201129/alphp-5.6.run
-    $ chmod +x alphp-5.6.run
-    $ ./alphp-5.6.run
+64 bit:
+
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86_64.run
+    $ chmod +x alphp-5.6-x86_64.run
+    $ ./alphp-5.6-x86_64.run
+32 bit:
+
+    $ https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86.run
+    $ chmod +x alphp-5.6-x86.run
+    $ ./alphp-5.6-x86.run
+
 Setelah terpasang, jalankan dengan:
 
     $ alphp
