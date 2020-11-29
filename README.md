@@ -15,6 +15,10 @@ Setelah terpasang, jalankan dengan:
 Jika shortcut tidak terpasang, jalankan dengan:
 
     $ $HOME/.alphp/5.6/bin/alphp
+Konfigurasi
+-----------
+File config ada di .alphp/5.6/[alphp.conf](5.6/alphp.conf)
+
 Catatan
 -------
 Karena alphp *rootless*, tidak mendukung port dibawah 1024. Standarnya adalah 8080. Tetapi jika menginginkan port misal 80, bisa menggunakan port forwarding. Berikut contoh jika menggunakan [socat](https://linux.die.net/man/1/socat):
