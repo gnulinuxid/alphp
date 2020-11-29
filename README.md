@@ -4,7 +4,22 @@ alphp adalah [Apache](https://httpd.apache.org/) dan [PHP](https://www.php.net/)
 
 Pemasangan
 ----------
+Pengunduhan hanya 11MB:
 
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6.sh
+    $ chmod +x alphp-5.6.sh
+    $ ./alphp-5.6.sh
+Setelah terpasang, jalankan dengan:
+
+    $ alphp
+Jika shortcut tidak terpasang, jalankan dengan:
+
+    $ $HOME/.alphp/5.6/bin/alphp
+Catatan
+-------
+Karena alphp *rootless*, tidak mendukung port dibawah 1024. Standarnya adalah 8080. Tetapi jika menginginkan port misal 80, bisa menggunakan port forwarding. Berikut contoh jika menggunakan [socat](https://linux.die.net/man/1/socat):
+
+    # socat tcp-listen:80,reuseaddr,fork tcp:localhost:8080
 Screenshot
 ----------
 ![alphp](screenshot.png)
