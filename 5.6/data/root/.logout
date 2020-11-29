@@ -1,0 +1,15 @@
+if pidof -s httpd > /dev/null 2>&1; then
+    echo "Menghentikan Apache HTTP Server..."
+    httpd -k stop
+fi
+
+for logfile in "$APACHE_LOG_DIR"/*; do
+    : > "$logfile"
+done
+
+if [ "$CLEAN_HISTORY" = 1 ]; then
+    echo "Membersihkan histori..."
+    rm -rf /tmp/*
+    rm -f "$APACHE_CONF_CUSTOM"
+    : > "$HOME/.ash_history"
+fi

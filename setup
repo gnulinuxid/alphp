@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+# setup - alphp 5.6 Installer.
+#
+# Copyright (c) 2020 nggit.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+if [ "$( id -u )" -eq 0 ]; then
+    echo "Error: Jangan pake root!" 1>&2
+    exit 1
+fi
+
+prog=alphp
+version=5.6
+IFS=:
+
+tar -xvf ./$prog.tar -C "$HOME/.$prog" &&
+echo "$prog $version telah berhasil dipasang di $HOME/.$prog"
+
+for p in $PATH; do
+    i=$(( i + 1 ))
+    [ ! -w "$p" ] && continue
+    n=$(( n + 1 ))
+    str_cmd="$str_cmd $n) ln -s $HOME/.$prog/$version/bin/$prog \$( echo \$PATH | cut -d' ' -f$i )/$prog;;"
+    str_choices="$str_choices $n )	$p
+"
+    if [ -L "$p/$prog" ]; then
+        echo "Shortcut \"$prog\" sudah terpasang di $p. Perbarui? ( 1 = Ya, Enter = Tidak )"
+        read -r selected
+        [ "${selected:-0}" = 1 ] && ln -sf $prog "$p/$prog"
+        exit
+    fi
+done
+
+[ "${n:-0}" -lt 1 ] && exit
+printf '%s\n%s' "Mau pasang shortcut dimana? ( Silahkan pilih 1 - $n )" "$str_choices"
+read -r selected
+str_cmd="case \$selected in$str_cmd *) echo 'Shortcut tidak dipasang';; esac"
+eval "$str_cmd"

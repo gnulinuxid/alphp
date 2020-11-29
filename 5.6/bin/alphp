@@ -1,0 +1,50 @@
+#!/usr/bin/env sh
+# alphp - Apache dan PHP dalam sebuah wadah.
+#
+# Copyright (c) 2020 nggit.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+if [ "$( id -u )" -eq 0 ]; then
+    echo "Error: Jangan pake root!" 1>&2
+    exit 1
+fi
+
+. "$( dirname "$( readlink -f "$0" )" )/../alphp.conf"
+
+# xhost +local:
+
+PROOT_BIN=$( command -v proot )
+if [ -z "$PROOT_BIN" ]; then
+    PROOT_BIN="$ALPHP_DIR/bin/proot"
+    echo "Info: Menggunakan proot di $PROOT_BIN"
+    # Linux 4.8+
+    export PROOT_NO_SECCOMP=1
+fi
+
+$PROOT_BIN \
+    -r "$ALPHP_DIR/system" \
+    -0 \
+    -w /root \
+    -b /dev \
+    -b /proc \
+    -b /sys \
+    -b /etc/resolv.conf \
+    -b "$ALPHP_DIR/data/root:/root" \
+    -b "$APACHE_CONF_DIR:/etc/apache2" \
+    -b "$PHP_INI_CUSTOM:/etc/php5/conf.d/custom.ini" \
+    -b "$PUBLIC_HTML:/var/www/$HOST/${PUBLIC_HTML##*/}" \
+    /usr/bin/env -i \
+    "APACHE_PORT=$APACHE_PORT" \
+    "CLEAN_HISTORY=$CLEAN_HISTORY" \
+    "DISPLAY=$DISPLAY" \
+    "DOCUMENT_ROOT=/var/www/$HOST/${PUBLIC_HTML##*/}" \
+    "HOST=$HOST" \
+    "TERM=$TERM" \
+    HOME=/root \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin \
+    SHELL=/bin/ash \
+    ash -l
