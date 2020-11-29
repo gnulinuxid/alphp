@@ -6,9 +6,9 @@ Pemasangan
 ----------
 Pengunduhan hanya 11MB:
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6.sh
-    $ chmod +x alphp-5.6.sh
-    $ ./alphp-5.6.sh
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-20201129/alphp-5.6.run
+    $ chmod +x alphp-5.6.run
+    $ ./alphp-5.6.run
 Setelah terpasang, jalankan dengan:
 
     $ alphp
