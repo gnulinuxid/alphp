@@ -23,7 +23,7 @@ echo "$prog $version telah berhasil dipasang di $HOME/.$prog"
 
 for p in $PATH; do
     i=$(( i + 1 ))
-    [ ! -w "$p" ] && continue
+    [ -w "$p" ] || continue
     n=$(( n + 1 ))
     str_cmd="$str_cmd $n) ln -s $HOME/.$prog/$version/bin/$prog \$( echo \$PATH | cut -d' ' -f$i )/$prog;;"
     str_choices="$str_choices $n )	$p
@@ -31,7 +31,7 @@ for p in $PATH; do
     if [ -L "$p/$prog" ]; then
         echo "Shortcut \"$prog\" sudah terpasang di $p. Perbarui? ( 1 = Ya, Enter = Tidak )"
         read -r selected
-        [ "${selected:-0}" = 1 ] && ln -sf $prog "$p/$prog"
+        [ "${selected:-0}" = 1 ] && ln -sf "$HOME/.$prog/$version/bin/$prog" "$p/$prog"
         exit
     fi
 done
