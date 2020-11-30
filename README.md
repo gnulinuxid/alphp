@@ -32,6 +32,14 @@ Catatan
 Karena alphp *rootless*, tidak mendukung port dibawah 1024. Standarnya adalah 8080. Tetapi jika menginginkan port misal 80, bisa menggunakan port forwarding. Berikut contoh jika menggunakan [socat](https://linux.die.net/man/1/socat):
 
     # socat tcp-listen:80,reuseaddr,fork tcp:localhost:8080
+- MySQL / MariaDB?
+
+Saat ini belum disertakan, tetapi PHP di alphp ada ekstensi mysqli untuk konek ke server database (terpisah).
+
+- Versi PHP
+
+Saat ini menggunakan PHP 5.6. Versi multi PHP? - Mungkin.
+
 Screenshot
 ----------
 ![alphp](screenshot.png)
