@@ -15,6 +15,9 @@ fi
 
 . "$( dirname "$( readlink -f "$0" )" )/../alphp.conf"
 
+[ -n "$1" ] && PHP_VERSION=$1
+[ "$PHP_VERSION" = 5 ] || [ "$PHP_VERSION" = 7 ] || { echo "PHP_VERSION=$PHP_VERSION tidak didukung"; exit; }
+
 # xhost +local:
 
 PROOT_BIN=$( command -v proot )
@@ -35,7 +38,7 @@ $PROOT_BIN \
     -b /etc/resolv.conf \
     -b "$ALPHP_DIR/data/root:/root" \
     -b "$APACHE_CONF_DIR:/etc/apache2" \
-    -b "$PHP_INI_CUSTOM:/etc/php5/conf.d/custom.ini" \
+    -b "$PHP_INI_CUSTOM:/etc/php$PHP_VERSION/conf.d/custom.ini" \
     -b "$PUBLIC_HTML:/var/www/$HOST/${PUBLIC_HTML##*/}" \
     /usr/bin/env -i \
     "APACHE_PORT=$APACHE_PORT" \
@@ -43,6 +46,7 @@ $PROOT_BIN \
     "DISPLAY=$DISPLAY" \
     "DOCUMENT_ROOT=/var/www/$HOST/${PUBLIC_HTML##*/}" \
     "HOST=$HOST" \
+    "PHP_VERSION=$PHP_VERSION" \
     "TERM=$TERM" \
     HOME=/root \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin \
