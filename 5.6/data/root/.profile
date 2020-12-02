@@ -23,7 +23,7 @@ EOL
     ( httpd -k start > $APACHE_LOG_ERROR 2>&1 & )
 fi
 
-while [ "$( stat -c %s $APACHE_LOG_ERROR )" -eq 0 ]; do
+while [ ! -s $APACHE_LOG_ERROR ]; do
     printf "."
     sleep .1
 done

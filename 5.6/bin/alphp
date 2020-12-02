@@ -17,9 +17,9 @@ fi
 
 for arg in "$@"; do
     case $arg in
-        5|7) PHP_VERSION=$arg;;
-        :[0-9]*) APACHE_PORT=${arg#:};;
-        /*) PUBLIC_HTML=${arg%/};;
+        5|7)       PHP_VERSION=$arg;;
+        :[0-9]*)   APACHE_PORT=${arg#:};;
+        /*)        PUBLIC_HTML=${arg%/};;
         -h|--help) cat <<EOL
 alphp 5.6 - https://github.com/gnulinuxid/alphp
 
