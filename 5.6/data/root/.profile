@@ -10,7 +10,7 @@ pid=$( pgrep -o httpd )
 if [ -n "$pid" ]; then
     echo "$pid" > $APACHE_PID_FILE
     echo "httpd (pid $pid) sudah berjalan" > $APACHE_LOG_ERROR
-    PHP_VERSION=$( grep -o '/php-cgi[5-7]' $APACHE_CONF_CUSTOM | sed 's/[^5-7]//g' )
+    [ -f $APACHE_CONF_CUSTOM ] && PHP_VERSION=$( grep -o '/php-cgi[5-7]' $APACHE_CONF_CUSTOM | sed 's/[^5-7]//g' )
 else
     echo "# Jangan mengedit file ini, dibuat oleh .profile" > $APACHE_CONF_CUSTOM
     cat <<EOL >> $APACHE_CONF_CUSTOM

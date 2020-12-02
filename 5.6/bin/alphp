@@ -15,8 +15,32 @@ fi
 
 . "$( dirname "$( readlink -f "$0" )" )/../alphp.conf"
 
-[ -n "$1" ] && PHP_VERSION=$1
-[ "$PHP_VERSION" = 5 ] || [ "$PHP_VERSION" = 7 ] || { echo "PHP_VERSION=$PHP_VERSION tidak didukung"; exit; }
+for arg in "$@"; do
+    case $arg in
+        5|7) PHP_VERSION=$arg;;
+        :[0-9]*) APACHE_PORT=${arg#:};;
+        /*) PUBLIC_HTML=${arg%/};;
+        -h|--help) cat <<EOL
+alphp 5.6 - https://github.com/gnulinuxid/alphp
+
+Penggunaan:
+  alphp [opsi]
+
+Opsi:
+  <PHP_VERSION>     contoh: alphp 7
+  :<APACHE_PORT>    contoh: alphp :8000
+  /<PUBLIC_HTML>    contoh: alphp /home/user/direktori
+  -h, --help        untuk melihat bantuan ini
+
+Opsi juga dapat digabungkan secara bebas, contoh: alphp /home/user/direktori 7
+Tanpa opsi, alphp akan menggunakan opsi di alphp.conf
+EOL
+exit;;
+        *) echo 'Gunakan opsi "-h" atau "--help" untuk bantuan.'; exit 22;;
+    esac
+done
+
+[ "$PHP_VERSION" = 5 ] || [ "$PHP_VERSION" = 7 ] || { echo "PHP_VERSION=$PHP_VERSION tidak didukung"; exit 95; }
 
 # xhost +local:
 
