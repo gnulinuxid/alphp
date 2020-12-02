@@ -4,16 +4,16 @@ alphp adalah [Apache](https://httpd.apache.org/) dan [PHP](https://www.php.net/)
 
 Pemasangan
 ----------
-Pengunduhan hanya 11MB. Silahkan pilih versi yang sesuai:
+Pengunduhan hanya 15MB. Silahkan pilih versi yang sesuai:
 
 64 bit:
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86_64.run
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-1/alphp-5.6-x86_64.run
     $ chmod +x alphp-5.6-x86_64.run
     $ ./alphp-5.6-x86_64.run
 32 bit:
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6/alphp-5.6-x86.run
+    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-1/alphp-5.6-x86.run
     $ chmod +x alphp-5.6-x86.run
     $ ./alphp-5.6-x86.run
 
@@ -23,6 +23,10 @@ Setelah terpasang, jalankan dengan:
 Jika shortcut tidak terpasang, jalankan dengan:
 
     $ $HOME/.alphp/5.6/bin/alphp
+
+Bantuan:
+
+    $ alphp -h
 Konfigurasi
 -----------
 File config ada di .alphp/5.6/[alphp.conf](5.6/alphp.conf)
@@ -38,7 +42,7 @@ Saat ini belum disertakan, tetapi PHP di alphp ada ekstensi mysqli untuk konek k
 
 - Versi PHP
 
-Saat ini menggunakan PHP 5.6. Versi multi PHP? - Mungkin.
+Saat ini menggunakan PHP 5.6 dan 7.2. Bisa berpindah versi dengan mudah. Untuk informasi ketik "alphp -h".
 
 Screenshot
 ----------
