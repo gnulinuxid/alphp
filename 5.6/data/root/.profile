@@ -6,7 +6,7 @@ export APACHE_PID_FILE=/run/apache2/httpd.pid
 
 printf "Memulai Apache HTTP Server"
 
-pid=$( pgrep -o httpd )
+pid=$( pgrep -o ^httpd$ )
 if [ -n "$pid" ]; then
     echo "$pid" > $APACHE_PID_FILE
     echo "httpd (pid $pid) sudah berjalan" > $APACHE_LOG_ERROR
