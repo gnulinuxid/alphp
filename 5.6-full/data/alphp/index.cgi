@@ -27,18 +27,6 @@ mysql_started() {
     pidof -s mysqld > /dev/null 2>&1
 }
 
-if mysql_started; then
-    mysql_status='<span class="success">Berjalan</span>'
-    qs=mysql-stop
-    bs=Hentikan
-    pma='<a href="/phpmyadmin">phpMyAdmin &raquo;</a>'
-else
-    mysql_status='<span class="error">Berhenti</span>'
-    qs=mysql-start
-    bs=Mulai
-    pma='<span class="disabled">phpMyAdmin &raquo;</span>'
-fi
-
 echo "Content-Type: text/html; charset=ISO-8859-1"
 echo "Cache-Control: no-cache, must-revalidate"
 echo "Expires: Thu, 01 Jan 1970 00:00:00 GMT"
@@ -73,6 +61,18 @@ case $QUERY_STRING in
         exit
         ;;
 esac
+
+if mysql_started; then
+    mysql_status='<span class="success">Berjalan</span>'
+    qs=mysql-stop
+    bs=Hentikan
+    pma='<a href="/phpmyadmin">phpMyAdmin &raquo;</a>'
+else
+    mysql_status='<span class="error">Berhenti</span>'
+    qs=mysql-start
+    bs=Mulai
+    pma='<span class="disabled">phpMyAdmin &raquo;</span>'
+fi
 
 cat <<EOL
 <!DOCTYPE html>
