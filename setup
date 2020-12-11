@@ -21,12 +21,17 @@ IFS=:
 tar -xvf ./$prog.tar -C "$HOME/.$prog" &&
 echo "$prog $version telah berhasil dipasang di $HOME/.$prog"
 
+str_cmd=
+str_choices=
+i=0
+n=0
+
 for p in $PATH; do
     i=$(( i + 1 ))
     [ -w "$p" ] || continue
     n=$(( n + 1 ))
-    str_cmd="$str_cmd $n) ln -s $HOME/.$prog/$version/bin/$prog \$( echo \$PATH | cut -d' ' -f$i )/$prog
-             echo 'Selesai. Ketik \"$prog -h\" untuk bantuan.';;"
+    str_cmd="$str_cmd $n) ln -s \"\$HOME/.\$prog/\$version/bin/\$prog\" \"\$( echo \"\$PATH\" | cut -d':' -f$i )/\$prog\"
+             echo \"Selesai. Ketik \\\"\$prog -h\\\" untuk bantuan.\";;"
     str_choices="$str_choices $n )	$p
 "
     if [ -L "$p/$prog" ]; then
@@ -37,7 +42,7 @@ for p in $PATH; do
     fi
 done
 
-[ "${n:-0}" -lt 1 ] && exit
+[ $n -lt 1 ] && exit
 printf '%s\n%s' "Mau pasang shortcut dimana? ( Silahkan pilih 1 - $n )" "$str_choices"
 read -r selected
 str_cmd="case \$selected in$str_cmd *) echo 'Shortcut tidak dipasang.';; esac"
