@@ -18,6 +18,7 @@ version=5.6
 IFS=:
 
 [ -e "$HOME/.$prog" ] || mkdir "$HOME/.$prog"
+[ -e "$HOME/Documents" ] || mkdir "$HOME/Documents"
 tar -xvf ./$prog.tar -C "$HOME/.$prog" &&
 echo "$prog $version telah berhasil dipasang di $HOME/.$prog"
 

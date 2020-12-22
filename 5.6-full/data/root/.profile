@@ -35,20 +35,20 @@ if pidof -s httpd > /dev/null 2>&1; then
     if [ -n "$pid" ]; then
         info="Jika terjadi konflik, coba: kill $pid"
     else
-        info=$( printf '%s\e[1;32m%s\e[0m%s' "[" "OK" "] Server $HOST telah berhasil dimulai di Port $APACHE_PORT" )
+        info=$( printf '%b' "[\033[1;32mOK\033[0m] Server $HOST telah berhasil dimulai di Port $APACHE_PORT" )
         info=$( echo "$info"; php-cgi"$PHP_VERSION" -v )
     fi
     help=$( echo; echo "Control Panel: http://localhost:$( grep 'Listen' $APACHE_CONF_CUSTOM | sed 's/[^0-9]//g' )/alphp/" )
 else
-    info=$( printf '%s\e[1;31m%s\e[0m%s' "[" "Error" "] Terjadi kesalahan!" )
+    info=$( printf '%b' "[\033[1;31mError\033[0m] Terjadi kesalahan!" )
     help=
 fi
 
 cat <<EOL
-$( printf '\e[1;32m%s\e[0m' "
+$( printf '%b' "\033[1;32m
   _ | _ |_  _    
  (_|||_)| ||_)   
-     |     |  5.6" )
+     |     |  5.6\033[0m" )
 Selamat datang di alphp!
 https://github.com/gnulinuxid/alphp
 -------------------------------------------------------------

@@ -61,7 +61,7 @@ $PROOT_BIN \
     -b /sys \
     -b /etc/resolv.conf \
     -b "$DATA_DIR/alphp:/usr/share/webapps/alphp" \
-    -b "$DATA_DIR/phpmyadmin:/etc/phpmyadmin" \
+    -b "$DATA_DIR/phpmyadmin:/usr/share/webapps/phpmyadmin" \
     -b "$DATA_DIR/root:/root" \
     -b "$APACHE_CONF_DIR:/etc/apache2" \
     -b "$MYSQL_CONF_DIR:/etc/mysql" \

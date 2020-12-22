@@ -1,9 +1,10 @@
 #!/bin/sh
-# Control Panel v0.0 - alphp 5.6 web-based user interface.
+# Control Panel v0.1 - alphp 5.6 web-based user interface.
 #
 MYSQL_DATA_DIR=/root/data
 MYSQL_USER=root
 MYSQL_PASSWORD=root
+PMA_SQL_FILE=/usr/share/webapps/phpmyadmin/examples/create_tables.sql
 
 log_read() {
     while IFS= read -r; do
@@ -40,7 +41,7 @@ case $QUERY_STRING in
             if mysql_started; then
                 echo "Database \"mysql\" berhasil dibuat di $MYSQL_DATA_DIR" >> "$ALPHP_LOG_FILE"
                 mysqladmin --user="$MYSQL_USER" password "$MYSQL_PASSWORD"
-                [ -f "$MYSQL_DATA_DIR/create_tables.sql" ] && mysql --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" < "$MYSQL_DATA_DIR/create_tables.sql"
+                mysql --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" < "$PMA_SQL_FILE"
             fi
         fi
         mysql_started || mysql_start
@@ -78,9 +79,12 @@ cat <<EOL
 <!DOCTYPE html>
 <html lang="id">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>alphp 5.6 Control Panel</title>
         <style>
+        .icon{display:inline-block !important;margin:0 !important;padding:0 !important;background-size:auto 100%;-webkit-background-size:auto 100%;-moz-background-size:auto 100%;-o-background-size:auto 100%;}
+        .ic_history{background-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22%23767676%22%20fill-opacity%3D%22.9%22%3E%3Cpath%20d%3D%22M13%203c-4.97%200-9%204.03-9%209H1l3.89%203.89.07.14L9%2012H6c0-3.87%203.13-7%207-7s7%203.13%207%207-3.13%207-7%207c-1.93%200-3.68-.79-4.94-2.06l-1.42%201.42C8.27%2019.99%2010.51%2021%2013%2021c4.97%200%209-4.03%209-9s-4.03-9-9-9zm-1%205v5l4.28%202.54.72-1.21-3.5-2.08V8H12z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);background-repeat:no-repeat;width:24px;height:24px;}
+
         body { background-color: #dcf2f1; font-family: sans-serif; font-size: 16px; color: #222; max-width: 600px; margin: 0 auto; }
 
         table { background-color: #fff; width: 100%; }
@@ -115,7 +119,7 @@ cat <<EOL
   _ | _ |_  _    
  (_|||_)| ||_)   
      |     |  5.6
-</pre></a></td><td colspan="3"><h1>Control Panel v0.0</h1></td>
+</pre></a></td><td colspan="3"><h1>Control Panel v0.1</h1></td>
             </tr>
             <tr id="title">
                 <td><b>Service</b></td><td><b>PID</b></td><td><b>Status</b></td><td><b>Aksi</b></td><td></td>
@@ -130,7 +134,7 @@ cat <<EOL
                 <td colspan="5"><div id="log">$( log_read )</div></td>
             </tr>
             <tr id="footer">
-                <td colspan="2"><a href="#" id="log_clear">Bersihkan Log</a></td><td class="text_right" id="copyright" colspan="3">&copy; <a href="https://github.com/gnulinuxid/">GNULinuxID</a> 2020</td>
+                <td colspan="2"><span class="icon ic_history" style="width: 16px; height: 16px; vertical-align: text-top;" aria-hidden="true"></span> <a href="#" id="log_clear">Bersihkan Log</a></td><td class="text_right" id="copyright" colspan="3">&copy; <a href="https://github.com/gnulinuxid/">GNULinuxID</a> 2020</td>
             </tr>
         </table>
         <div id="qs" style="display: none;">$qs</div>
