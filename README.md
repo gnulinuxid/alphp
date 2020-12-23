@@ -1,22 +1,20 @@
 alphp 5.6
 =========
-alphp adalah [Apache](https://httpd.apache.org/) dan [PHP](https://www.php.net/) dalam sebuah wadah. Ini seperti [XAMPP](https://www.apachefriends.org/index.html), dengan keunggulan yaitu Apache dan pengguna tidak saling berebut perijinan. Tidak perlu melakukan *chown* atau *chmod*.
+alphp adalah [Apache](https://httpd.apache.org/) dan [PHP](https://www.php.net/) dalam sebuah wadah. Ini seperti [XAMPP](https://www.apachefriends.org/index.html), dengan keunggulan yaitu Apache dan pengguna tidak saling berebut perijinan. Tidak perlu selalu melakukan *chown* atau *chmod*. Karena alphp dipasang di direktori **/home/pengguna** bukan di **/opt**, dan dijalankan tanpa akses root.
 
 Pemasangan
 ----------
-Pengunduhan hanya 15MB (lite). Silahkan pilih versi yang sesuai:
+Silahkan pilih versi yang sesuai:
 
 **Lite**
 
-64 bit:
+Pengunduhan versi "lite" hanya 15MB. Berisi Apache 2.4, PHP 5, dan PHP 7.
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-1/alphp-5.6-x86_64.run
-    $ sh alphp-5.6-x86_64.run
-32 bit:
+    Sedang tidak diperbarui, silahkan unduh versi "full"
 
-    $ wget https://github.com/gnulinuxid/alphp/releases/download/v5.6-1/alphp-5.6-x86.run
-    $ sh alphp-5.6-x86.run
 **Full**
+
+Pengunduhan versi "full" sekitar 60MB. Berisi Apache 2.4, PHP 5, PHP 7, MariaDB dan [phpMyAdmin](https://github.com/gnulinuxid/phpmyadmin).
 
 64 bit:
 
@@ -39,7 +37,7 @@ Bantuan:
     $ alphp -h
 Konfigurasi
 -----------
-File config ada di .alphp/5.6/[alphp.conf](5.6/alphp.conf)
+File config ada di .alphp/5.6-full/[alphp.conf](5.6-full/alphp.conf)
 
 Catatan
 -------
