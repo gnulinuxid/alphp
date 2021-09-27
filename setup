@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# setup - alphp 5.6 Installer.
+# setup - alphp 7.4 Installer.
 #
 # Copyright (c) 2020 nggit.
 #
@@ -14,7 +14,7 @@ if [ "$( id -u )" -eq 0 ]; then
 fi
 
 prog=alphp
-version=5.6
+version=7.4-full
 IFS=:
 
 [ -e "$HOME/.$prog" ] || mkdir "$HOME/.$prog"
