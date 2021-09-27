@@ -1,3 +1,6 @@
 [submodule "5.6-full/data/phpmyadmin"]
 	path = 5.6-full/data/phpmyadmin
 	url = https://github.com/gnulinuxid/phpmyadmin
+[submodule "7.4-full/data/phpmyadmin"]
+	path = 7.4-full/data/phpmyadmin
+	url = git@github.com:gnulinuxid/phpmyadmin.git
