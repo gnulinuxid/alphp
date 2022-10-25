@@ -4,3 +4,6 @@
 [submodule "7.4-full/data/phpmyadmin"]
 	path = 7.4-full/data/phpmyadmin
 	url = git@github.com:gnulinuxid/phpmyadmin.git
+[submodule "8.1-full/data/phpmyadmin"]
+	path = 8.1-full/data/phpmyadmin
+	url = git@github.com:gnulinuxid/phpmyadmin.git
